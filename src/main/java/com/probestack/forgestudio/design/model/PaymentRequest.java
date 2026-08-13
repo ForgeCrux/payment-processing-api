@@ -16,7 +16,7 @@ import jakarta.annotation.Generated;
 /**
  * PaymentRequest
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-13T10:12:31.837361043Z[GMT]")public class PaymentRequest {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-13T10:14:01.777003275Z[GMT]")public class PaymentRequest {
 
   private String orderId;
 

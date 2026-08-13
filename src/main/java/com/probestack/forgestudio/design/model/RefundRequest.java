@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * RefundRequest
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-13T10:12:31.837361043Z[GMT]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-13T10:14:01.777003275Z[GMT]")
 @Document(collection = "payment_processing_api_default")
 public class RefundRequest {
 

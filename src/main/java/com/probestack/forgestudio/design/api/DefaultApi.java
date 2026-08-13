@@ -24,7 +24,7 @@ import jakarta.validation.constraints.*;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-13T10:12:31.837361043Z[GMT]")@Validated
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-13T10:14:01.777003275Z[GMT]")@Validated
 @Tag(name = "Default", description = "the Default API")
 public interface DefaultApi {
 

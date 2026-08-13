@@ -1,0 +1,124 @@
+{
+  "info" : {
+    "_postman_id" : "052ae657-c5c3-46f6-844b-a3b1a3b40e49",
+    "name" : "Payment Processing API",
+    "description" : "Generated Postman collection for payment-processing-api",
+    "schema" : "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable" : [ {
+    "key" : "baseUrl",
+    "value" : "http://localhost:8080",
+    "type" : "string"
+  }, {
+    "key" : "bearerToken",
+    "value" : "",
+    "type" : "string"
+  }, {
+    "key" : "resourceId",
+    "value" : "sample-id",
+    "type" : "string"
+  }, {
+    "key" : "apiKey",
+    "value" : "change-me-api-key",
+    "type" : "string"
+  } ],
+  "item" : [ {
+    "name" : "Health",
+    "item" : [ {
+      "name" : "Liveness",
+      "request" : {
+        "auth" : {
+          "type" : "noauth"
+        },
+        "method" : "GET",
+        "header" : [ {
+          "key" : "Accept",
+          "value" : "application/json"
+        } ],
+        "url" : {
+          "raw" : "{{baseUrl}}/actuator/health/liveness",
+          "host" : [ "{{baseUrl}}" ],
+          "path" : [ "actuator", "health", "liveness" ]
+        }
+      }
+    } ]
+  }, {
+    "name" : "API",
+    "item" : [ {
+      "name" : "Authorize payment",
+      "request" : {
+        "method" : "POST",
+        "header" : [ {
+          "key" : "X-API-Key",
+          "value" : "{{apiKey}}"
+        }, {
+          "key" : "Content-Type",
+          "value" : "application/json"
+        }, {
+          "key" : "Accept",
+          "value" : "application/json"
+        } ],
+        "url" : {
+          "raw" : "{{baseUrl}}/payments/v1/authorize",
+          "host" : [ "{{baseUrl}}" ],
+          "path" : [ "payments", "v1", "authorize" ]
+        },
+        "body" : {
+          "mode" : "raw",
+          "raw" : "{\n  \"orderId\" : \"orderId\",\n  \"amount\" : 0.8008281904610115,\n  \"currency\" : \"INR\",\n  \"method\" : \"CARD\"\n}",
+          "options" : {
+            "raw" : {
+              "language" : "json"
+            }
+          }
+        }
+      }
+    }, {
+      "name" : "Refund payment",
+      "request" : {
+        "method" : "POST",
+        "header" : [ {
+          "key" : "X-API-Key",
+          "value" : "{{apiKey}}"
+        }, {
+          "key" : "Content-Type",
+          "value" : "application/json"
+        }, {
+          "key" : "Accept",
+          "value" : "application/json"
+        } ],
+        "url" : {
+          "raw" : "{{baseUrl}}/payments/v1/payments/{{{resourceId}}}/refund",
+          "host" : [ "{{baseUrl}}" ],
+          "path" : [ "payments", "v1", "payments", "{{{resourceId}}}", "refund" ]
+        },
+        "body" : {
+          "mode" : "raw",
+          "raw" : "{\n  \"amount\" : 0.8008281904610115,\n  \"reason\" : \"reason\"\n}",
+          "options" : {
+            "raw" : {
+              "language" : "json"
+            }
+          }
+        }
+      }
+    }, {
+      "name" : "Get payment status",
+      "request" : {
+        "method" : "GET",
+        "header" : [ {
+          "key" : "X-API-Key",
+          "value" : "{{apiKey}}"
+        }, {
+          "key" : "Accept",
+          "value" : "application/json"
+        } ],
+        "url" : {
+          "raw" : "{{baseUrl}}/payments/v1/payments/{{{resourceId}}}",
+          "host" : [ "{{baseUrl}}" ],
+          "path" : [ "payments", "v1", "payments", "{{{resourceId}}}" ]
+        }
+      }
+    } ]
+  } ]
+}

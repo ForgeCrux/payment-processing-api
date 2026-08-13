@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  description: "Payment authorization, refund and status APIs."
+  title: Payment Processing API
+  version: 1.0.0
+servers:
+- url: https://api.example.com
+security:
+- apiKeyAuth: []
+paths:
+  /payments/v1/authorize:
+    post:
+      operationId: authorizePayment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentRequest"
+        required: true
+      responses:
+        "200":
+          description: Authorized
+        "402":
+          description: Payment declined
+      summary: Authorize payment
+      x-content-type: application/json
+      x-accepts: application/json
+  /payments/v1/payments/{paymentId}/refund:
+    post:
+      operationId: refundPayment
+      parameters:
+      - explode: false
+        in: path
+        name: paymentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefundRequest"
+      responses:
+        "200":
+          description: Refund initiated
+      summary: Refund payment
+      x-content-type: application/json
+      x-accepts: application/json
+  /payments/v1/payments/{paymentId}:
+    get:
+      operationId: getPayment
+      parameters:
+      - explode: false
+        in: path
+        name: paymentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Payment status
+      summary: Get payment status
+      x-accepts: application/json
+components:
+  schemas:
+    PaymentRequest:
+      example:
+        amount: 0.8008281904610115
+        method: CARD
+        orderId: orderId
+        currency: INR
+      properties:
+        orderId:
+          type: string
+        amount:
+          type: number
+        currency:
+          example: INR
+          type: string
+        method:
+          enum:
+          - CARD
+          - UPI
+          - WALLET
+          - NET_BANKING
+          type: string
+      required:
+      - amount
+      - currency
+      - method
+      - orderId
+      type: object
+    RefundRequest:
+      example:
+        reason: reason
+        amount: 0.8008281904610115
+      properties:
+        amount:
+          type: number
+        reason:
+          type: string
+      required:
+      - amount
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      in: header
+      name: X-API-Key
+      type: apiKey

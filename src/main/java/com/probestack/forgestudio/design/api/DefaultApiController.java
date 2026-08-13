@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.probestack.forgestudio.design.service.DefaultService;
 import com.probestack.forgestudio.design.validation.GeneratedRequestValidator;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-13T10:12:31.837361043Z[GMT]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-13T10:14:01.777003275Z[GMT]")
 @Controller
 @RequestMapping("${openapi.paymentProcessing.base-path:}")
 public class DefaultApiController implements DefaultApi {
